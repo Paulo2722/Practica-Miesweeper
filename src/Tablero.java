@@ -1,5 +1,4 @@
 import java.util.Random;
-import java.util.Scanner;
 
 public class Tablero {
     private char[][] tablero;
@@ -45,4 +44,12 @@ public class Tablero {
         }while (numeroMinas != 0);
     }
 
+    public boolean hayMina(int posicionFila, int posicionColumna){
+
+        if (tablero[posicionFila][posicionColumna] == Mina){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
