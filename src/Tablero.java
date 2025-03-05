@@ -52,4 +52,27 @@ public class Tablero {
             return false;
         }
     }
+
+    public void seleccionarOpcion(int opcion, int posicionFila, int posicionColumna, Ficha ficha){
+
+        switch (opcion){
+            case 1:
+                System.out.println("Seleccione una fila (0-8): ");
+                System.out.println("Seleccione una columna (0-8) :");
+
+            case 2:
+                System.out.println("Seleccione una fila (0-8): ");
+                System.out.println("Seleccione una columna (0-8) :");
+
+                tablero[posicionFila][posicionColumna] = ficha.getBandera();
+
+            case 3:
+                System.out.println("Seleccione una fila (0-8): ");
+                System.out.println("Seleccione una columna (0-8) :");
+
+                tablero[posicionFila][posicionColumna] = ficha.getInterrogante();
+
+                break;
+        }
+    }
 }

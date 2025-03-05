@@ -1,15 +1,25 @@
 public class Ficha {
-    private char ficha;
+    private char bandera;
+    private char interrogante;
 
-    public Ficha(char ficha){
-        this.ficha = ficha;
+    public Ficha(char bandera, char interrogante){
+        this.bandera = bandera;
+        this.interrogante = interrogante;
     }
 
-    public char getFicha(){
-        return ficha;
+    public char getBandera(){
+        return bandera;
     }
 
-    public void setFicha(char ficha){
-        this.ficha = ficha;
+    public char getInterrogante(){
+        return interrogante;
+    }
+
+    public void setBandera(char bandera){
+        this.bandera = bandera;
+    }
+
+    public void setInterrogante(char interrogante){
+        this.interrogante = interrogante;
     }
 }
