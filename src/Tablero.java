@@ -4,7 +4,8 @@ public class Tablero {
     private char[][] tablero;
     private final int filas = 9;
     private final int columnas = 9;
-    private char blanco = ' ';
+    private char casillaTapada = '#';
+    private char casillaRevelada = ' ';
     private char Mina = 'O';
 
     public Tablero() {
@@ -13,7 +14,7 @@ public class Tablero {
 
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
-                tablero[i][j] = blanco;
+                tablero[i][j] = casillaTapada;
             }
         }
     }
