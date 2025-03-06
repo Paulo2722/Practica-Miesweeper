@@ -35,8 +35,17 @@ public class Tablero {
         do{
             Random random = new Random();
 
-            int filaAleatoria = random.nextInt(10);
-            int columnaAleatoria = random.nextInt(10);
+            int filaAleatoria = random.nextInt(9);
+            int columnaAleatoria = random.nextInt(9);
+
+            if (tablero[filaAleatoria][columnaAleatoria] == Mina)
+
+                do{
+
+                    filaAleatoria = random.nextInt(9);
+                    columnaAleatoria = random.nextInt(9);
+
+                }while (tablero[filaAleatoria][columnaAleatoria] == Mina);
 
             tablero[filaAleatoria][columnaAleatoria] = Mina;
             numeroMinas--;
@@ -46,11 +55,7 @@ public class Tablero {
 
     public boolean hayMina(int posicionFila, int posicionColumna){
 
-        if (tablero[posicionFila][posicionColumna] == Mina){
-            return true;
-        }else{
-            return false;
-        }
+        return tablero[posicionFila][posicionColumna] == Mina;
     }
 
     public void seleccionarOpcion(int opcion, int posicionFila, int posicionColumna, Ficha ficha){
