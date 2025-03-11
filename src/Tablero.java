@@ -1,17 +1,17 @@
 import java.util.Random;
 
 public class Tablero {
-    private char[][] tablero;
+    private Casilla[][] tablero;
     private final int filas = 9;
     private final int columnas = 9;
 
     public Tablero() {
 
-        tablero = new char[filas][columnas];
+        tablero = new Casilla[filas][columnas];
 
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
-                tablero[i][j] = casillaTapada;
+                tablero[i][j] = new Casilla();
             }
         }
     }
@@ -20,7 +20,7 @@ public class Tablero {
 
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
-                System.out.print("[" + tablero[i][j] + "]");
+                System.out.print("[" + tablero[i][j].Simbolo() + "]");
             }
             System.out.println();
         }
@@ -36,24 +36,19 @@ public class Tablero {
             int filaAleatoria = random.nextInt(9);
             int columnaAleatoria = random.nextInt(9);
 
-            if (tablero[filaAleatoria][columnaAleatoria] == Mina)
+            if (tablero[filaAleatoria][columnaAleatoria].tieneMina())
 
                 do {
 
                     filaAleatoria = random.nextInt(9);
                     columnaAleatoria = random.nextInt(9);
 
-                } while (tablero[filaAleatoria][columnaAleatoria] == Mina);
+                } while (tablero[filaAleatoria][columnaAleatoria].tieneMina());
 
-            tablero[filaAleatoria][columnaAleatoria] = Mina;
+            tablero[filaAleatoria][columnaAleatoria].ponerMina();
             numeroMinas--;
 
         } while (numeroMinas != 0);
-    }
-
-    public boolean hayMina(int posicionFila, int posicionColumna) {
-
-        return tablero[posicionFila][posicionColumna] == Mina;
     }
 
     public void seleccionarOpcion(int opcion, int posicionFila, int posicionColumna, Ficha ficha) {
@@ -67,13 +62,9 @@ public class Tablero {
                 System.out.println("Seleccione una fila (0-8): ");
                 System.out.println("Seleccione una columna (0-8) :");
 
-                tablero[posicionFila][posicionColumna] = ficha.getBandera();
-
             case 3:
                 System.out.println("Seleccione una fila (0-8): ");
                 System.out.println("Seleccione una columna (0-8) :");
-
-                tablero[posicionFila][posicionColumna] = ficha.getInterrogante();
 
                 break;
         }
@@ -91,8 +82,8 @@ public class Tablero {
             int fila2 = posicionFila + filasAdyacentes[i];
             int columna2 = posicionColumna + columnasAdyacentes[i];
 
-            if (fila2 != Mina && columna2 != Mina && fila2 <= filas && columna2 <= columnas){
-                if (tablero[fila2][columna2] == Mina){
+            if (fila2 <= filas && columna2 <= columnas && fila2 >= 0 && columna2 >= 0){
+                if (tablero[fila2][columna2].tieneMina()){
                     count++;
                 }
             }

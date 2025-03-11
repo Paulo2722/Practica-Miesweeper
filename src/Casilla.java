@@ -4,30 +4,33 @@ public class Casilla {
     private boolean tieneBandera;
 
 
-    public Casilla(boolean estaTapada, boolean tieneMina, boolean tieneBandera){
-
+    public Casilla(){
         this.estaTapada = true;
         this.tieneMina = false;
         this.tieneBandera = false;
     }
 
-    public boolean getEstaTapada(){
+    public boolean estaTapada(){
         return estaTapada;
     }
-    public boolean getTieneMina(){
+
+    public boolean tieneMina(){
         return tieneMina;
     }
-    public boolean getTieneBandera(){
+
+    public boolean tieneBandera(){
         return tieneBandera;
     }
 
-    public void setEstaTapada(boolean estaTapada){
-        this.estaTapada = true;
+    public void ponerMina(){
+        this.tieneMina = true;
     }
-    public void setTieneMina(boolean tieneMina){
-        this.tieneMina = false;
+
+    public void ponerBandera(){
+        this.tieneBandera = true;
     }
-    public void setTieneBandera(boolean TieneBandera){
+
+    public void quitarBandera() {
         this.tieneBandera = false;
     }
 
