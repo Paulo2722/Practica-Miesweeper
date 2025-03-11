@@ -4,9 +4,6 @@ public class Tablero {
     private char[][] tablero;
     private final int filas = 9;
     private final int columnas = 9;
-    private char casillaTapada = '#';
-    private char casillaRevelada = ' ';
-    private char Mina = 'O';
 
     public Tablero() {
 
