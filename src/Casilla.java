@@ -2,12 +2,13 @@ public class Casilla {
     private boolean estaTapada;
     private boolean tieneMina;
     private boolean tieneBandera;
-
+    private int minasAdyacentes;
 
     public Casilla(){
         this.estaTapada = true;
         this.tieneMina = false;
         this.tieneBandera = false;
+        this.minasAdyacentes = 0;
     }
 
     public boolean estaTapada(){
@@ -32,6 +33,18 @@ public class Casilla {
 
     public void quitarBandera() {
         this.tieneBandera = false;
+    }
+
+    public int getMinasAdyacentes(){
+        return minasAdyacentes;
+    }
+
+    public void setMinasAdyacentes(int minasAdyacentes){
+        this.minasAdyacentes = minasAdyacentes;
+    }
+
+    public void abrir(){
+        this.estaTapada = false;
     }
 
     public char Simbolo(){
