@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.Random;
 
 public class Tablero {
@@ -89,5 +91,31 @@ public class Tablero {
             }
         }
         return count;
+    }
+
+    public void revelarCasillas(int posicionFila, int posicionColumna) {
+
+        Casilla casilla = new Casilla();
+
+        if (casilla.tieneMina() || casilla.estaTapada()) {
+            return;
+        }
+
+        int minasAdyacentes = contarMinasAdyacentes(posicionFila, posicionColumna);
+        casilla.abrir();
+
+        if (minasAdyacentes > 0) {
+            casilla.setMinasAdyacentes(minasAdyacentes);
+        }
+
+        if (minasAdyacentes <= 0) {
+            int[] filasAdyacentes = {-1, -1, -1, 0, 0, 1, 1, 1};
+            int[] columnasAdyacentes = {-1, 0, 1, -1, 1, -1, 0, 1};
+
+            for (int i = 0; i < 8; i++) {
+                revelarCasillas(posicionFila + filasAdyacentes[i],
+                        posicionColumna + columnasAdyacentes[i]);
+            }
+        }
     }
 }
