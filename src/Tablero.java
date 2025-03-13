@@ -52,22 +52,43 @@ public class Tablero {
         } while (minasPorPoner != 0);
     }
 
-    public void seleccionarOpcion(int opcion, int posicionFila, int posicionColumna, Ficha ficha) {
+    public void seleccionarOpcion(int opcion, int posicionFila, int posicionColumna) {
+
+        System.out.println("Seleccione su acción (1-3): ");
+        System.out.println();
+        System.out.println("1.Abrir casilla");
+        System.out.println("2.Poner bandera");
+        System.out.println("3.Quitar bandera");
 
         switch (opcion) {
             case 1:
-                System.out.println("Seleccione una fila (0-8): ");
-                System.out.println("Seleccione una columna (0-8) :");
+                System.out.println("Seleccione una fila (0-8): " + posicionFila);
+                System.out.println("Seleccione una columna (0-8): " + posicionColumna);
 
-            case 2:
-                System.out.println("Seleccione una fila (0-8): ");
-                System.out.println("Seleccione una columna (0-8) :");
-
-            case 3:
-                System.out.println("Seleccione una fila (0-8): ");
-                System.out.println("Seleccione una columna (0-8) :");
+                tablero[posicionFila][posicionColumna].abrir();
+                revelarCasillas(posicionFila, posicionColumna);
+                comprobarVictoria();
 
                 break;
+
+            case 2:
+                System.out.println("Seleccione una fila (0-8): " + posicionFila);
+                System.out.println("Seleccione una columna (0-8): " + posicionColumna);
+
+                tablero[posicionFila][posicionColumna].ponerBandera();
+
+                break;
+
+            case 3:
+                System.out.println("Seleccione la fila de la bandera (0-8): " + posicionFila);
+                System.out.println("Seleccione la columna de la bandera (0-8): " + posicionColumna);
+
+                if (tablero[posicionFila][posicionColumna].tieneBandera()){
+                    tablero[posicionFila][posicionColumna].quitarBandera();
+                }
+
+            default:
+                System.out.println("La opción seleccionada no es válida");
         }
     }
 
