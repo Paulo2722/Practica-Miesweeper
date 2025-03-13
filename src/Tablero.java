@@ -4,6 +4,7 @@ public class Tablero {
     private Casilla[][] tablero;
     private final int filas = 9;
     private final int columnas = 9;
+    private int numeroMinas = 10;
 
     public Tablero() {
 
@@ -28,7 +29,7 @@ public class Tablero {
 
     public void ponerMinas() {
 
-        int numeroMinas = 10;
+        int minasPorPoner = numeroMinas;
 
         do {
             Random random = new Random();
@@ -46,9 +47,9 @@ public class Tablero {
                 } while (tablero[filaAleatoria][columnaAleatoria].tieneMina());
 
             tablero[filaAleatoria][columnaAleatoria].ponerMina();
-            numeroMinas--;
+            minasPorPoner--;
 
-        } while (numeroMinas != 0);
+        } while (minasPorPoner != 0);
     }
 
     public void seleccionarOpcion(int opcion, int posicionFila, int posicionColumna, Ficha ficha) {
@@ -115,5 +116,27 @@ public class Tablero {
                         posicionColumna + columnasAdyacentes[i]);
             }
         }
+    }
+
+    public boolean comprobarVictoria() {
+
+        int cantidadMinas = numeroMinas;
+        int numeroCasillasSinMinas = (filas * columnas) - cantidadMinas; //El 10 es el numero de minas
+        int casillasAbiertas = 0;
+
+        for (int i = 0; i < filas; i++){
+            for (int j = 0; j < columnas; j++){
+                if (!tablero[i][j].estaTapada() && !tablero[i][j].tieneMina() && !tablero[i][j].tieneBandera()){
+                    casillasAbiertas++;
+                }
+            }
+        }
+
+        if (numeroCasillasSinMinas == casillasAbiertas){
+            return true;
+
+        }
+
+        return false;
     }
 }
