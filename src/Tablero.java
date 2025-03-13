@@ -4,7 +4,7 @@ public class Tablero {
     private Casilla[][] tablero;
     private final int filas = 9;
     private final int columnas = 9;
-    private int numeroMinas = 10;
+    private final int numeroMinas = 10;
 
     public Tablero() {
 
@@ -141,8 +141,7 @@ public class Tablero {
 
     public boolean comprobarVictoria() {
 
-        int cantidadMinas = numeroMinas;
-        int numeroCasillasSinMinas = (filas * columnas) - cantidadMinas; //El 10 es el numero de minas
+        int numeroCasillasSinMinas = (filas * columnas) - numeroMinas;
         int casillasAbiertas = 0;
 
         for (int i = 0; i < filas; i++){
