@@ -85,9 +85,9 @@ public class Tablero {
 
     public void revelarCasillas(int posicionFila, int posicionColumna) {
 
-        Casilla casilla = new Casilla();
+        Casilla casilla = tablero[posicionFila][posicionColumna];
 
-        if (casilla.tieneMina() || casilla.estaTapada()) {
+        if (casilla.tieneMina()) {
             return;
         }
 

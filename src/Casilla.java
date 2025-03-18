@@ -4,30 +4,30 @@ public class Casilla {
     private boolean tieneBandera;
     private int minasAdyacentes;
 
-    public Casilla(){
+    public Casilla() {
         this.estaTapada = true;
         this.tieneMina = false;
         this.tieneBandera = false;
         this.minasAdyacentes = 0;
     }
 
-    public boolean estaTapada(){
+    public boolean estaTapada() {
         return estaTapada;
     }
 
-    public boolean tieneMina(){
+    public boolean tieneMina() {
         return tieneMina;
     }
 
-    public boolean tieneBandera(){
+    public boolean tieneBandera() {
         return tieneBandera;
     }
 
-    public void ponerMina(){
+    public void ponerMina() {
         this.tieneMina = true;
     }
 
-    public void ponerBandera(){
+    public void ponerBandera() {
         this.tieneBandera = true;
     }
 
@@ -35,27 +35,29 @@ public class Casilla {
         this.tieneBandera = false;
     }
 
-    public int getMinasAdyacentes(){
+    public int getMinasAdyacentes() {
         return minasAdyacentes;
     }
 
-    public void setMinasAdyacentes(int minasAdyacentes){
+    public void setMinasAdyacentes(int minasAdyacentes) {
         this.minasAdyacentes = minasAdyacentes;
     }
 
-    public void abrir(){
+    public void abrir() {
         this.estaTapada = false;
     }
 
-    public char Simbolo(){
+    public char Simbolo() {
         if (tieneBandera)
             return 'P';
         if (tieneMina)
             return 'O';
         if (estaTapada)
             return '#';
+        if (minasAdyacentes > 0){
+            return (char) (minasAdyacentes + '0');
+        }
 
         return ' ';
     }
-
 }

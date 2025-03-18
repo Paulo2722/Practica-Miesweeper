@@ -35,7 +35,6 @@ public class Juego {
                     sc.nextLine();
 
                     tablero.revelarCasillas(posicionFila, posicionColumna);
-                    tablero.comprobarVictoria();
 
                     if (tablero.comprobarVictoria()) {
                         partida = false;
