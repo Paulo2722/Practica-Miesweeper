@@ -74,7 +74,7 @@ public class Tablero {
             int fila2 = posicionFila + filasAdyacentes[i];
             int columna2 = posicionColumna + columnasAdyacentes[i];
 
-            if (fila2 <= filas && columna2 <= columnas && fila2 >= 0 && columna2 >= 0){
+            if (fila2 < filas && columna2 < columnas && fila2 >= 0 && columna2 >= 0){
                 if (tablero[fila2][columna2].tieneMina()){
                     count++;
                 }
@@ -85,29 +85,33 @@ public class Tablero {
 
     public void revelarCasillas(int posicionFila, int posicionColumna) {
 
-        Casilla casilla = tablero[posicionFila][posicionColumna];
-
-        if (casilla.tieneMina()) {
+        if (posicionFila < 0 || posicionFila >= filas || posicionColumna < 0 || posicionColumna >= columnas) {
             return;
         }
 
-        int minasAdyacentes = contarMinasAdyacentes(posicionFila, posicionColumna);
+        Casilla casilla = tablero[posicionFila][posicionColumna];
+
+        if (casilla.tieneMina() || !casilla.estaTapada() || casilla.tieneBandera()) {
+            return;
+        }
+
         casilla.abrir();
+        int minasAdyacentes = contarMinasAdyacentes(posicionFila, posicionColumna);
 
         if (minasAdyacentes > 0) {
             casilla.setMinasAdyacentes(minasAdyacentes);
-        }
-
-        if (minasAdyacentes <= 0) {
+        } else {
             int[] filasAdyacentes = {-1, -1, -1, 0, 0, 1, 1, 1};
             int[] columnasAdyacentes = {-1, 0, 1, -1, 1, -1, 0, 1};
 
             for (int i = 0; i < 8; i++) {
-                revelarCasillas(posicionFila + filasAdyacentes[i],
-                        posicionColumna + columnasAdyacentes[i]);
+                int filaAdyacente = posicionFila + filasAdyacentes[i];
+                int columnaAdyacente = posicionColumna + columnasAdyacentes[i];
+
+                revelarCasillas(filaAdyacente, columnaAdyacente);
+                }
             }
         }
-    }
 
     public boolean comprobarVictoria() {
 
