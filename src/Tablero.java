@@ -62,6 +62,10 @@ public class Tablero {
             tablero[posicionFila][posicionColumna].quitarBandera();
     }
 
+    public boolean tieneMina(int posicionFila, int posicionColumna) {
+        return tablero[posicionFila][posicionColumna].tieneMina();
+    }
+
     public int contarMinasAdyacentes(int posicionFila, int posicionColumna) {
 
         int[] filasAdyacentes = {-1, -1, -1, 0, 0, 1, 1, 1};
@@ -118,19 +122,13 @@ public class Tablero {
         int numeroCasillasSinMinas = (filas * columnas) - numeroMinas;
         int casillasAbiertas = 0;
 
-        for (int i = 0; i < filas; i++){
-            for (int j = 0; j < columnas; j++){
-                if (!tablero[i][j].estaTapada() && !tablero[i][j].tieneMina() && !tablero[i][j].tieneBandera()){
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                if (!tablero[i][j].estaTapada() && !tablero[i][j].tieneMina()) {
                     casillasAbiertas++;
                 }
             }
         }
-
-        if (numeroCasillasSinMinas == casillasAbiertas){
-            return true;
-
-        }
-
-        return false;
+        return numeroCasillasSinMinas == casillasAbiertas;
     }
 }

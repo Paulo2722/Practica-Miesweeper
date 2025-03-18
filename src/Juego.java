@@ -34,6 +34,11 @@ public class Juego {
 
                     sc.nextLine();
 
+                    if (tablero.tieneMina(posicionFila, posicionColumna)){
+                        System.out.println("Has explotado una mina");
+                        partida = false;
+                    }
+
                     tablero.revelarCasillas(posicionFila, posicionColumna);
 
                     if (tablero.comprobarVictoria()) {

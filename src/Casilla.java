@@ -51,7 +51,7 @@ public class Casilla {
         if (tieneBandera)
             return 'P';
         if (tieneMina)
-            return 'O';
+            return '#';
         if (estaTapada)
             return '#';
         if (minasAdyacentes > 0){
